@@ -11,10 +11,6 @@
   padding: 0 1em;
 }
 
-.App-footer {
-  background: #000;
-  color: white;
-  padding: 0 1em;
-  font-size: 0.8em;
-  text-align: right;
+.App-map {
+  height: 600px;
 }

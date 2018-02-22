@@ -3,7 +3,7 @@ import Typography from 'typography';
 import theme from 'typography-theme-parnassus';
 import {Helmet} from "react-helmet";
 
-import { Footer, Header, Map, Nav } from './components';
+import { Header, Map, Nav } from './components';
 import './App.css';
 
 const typography = new Typography(theme);
@@ -19,7 +19,6 @@ class App extends Component {
         <Header></Header>
         <Nav></Nav>
         <Map></Map>
-        <Footer></Footer>
       </div>
     );
   }
