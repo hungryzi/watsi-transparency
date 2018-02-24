@@ -6,6 +6,7 @@ import {
 
 import { MarkersList } from '../components';
 import { donationsByCountry } from '../services/DonationsService';
+import GeoService, { loadCountries } from '../services/GeoService';
 import CountryDonationsList from '../models/CountryDonationsList';
 
 import 'leaflet/dist/leaflet.css';
@@ -17,11 +18,19 @@ export default class CustomComponent extends Component {
     zoom: 13,
   }
 
-  render() {
-    const center = [this.state.lat, this.state.lng]
+  componentDidMount() {
+    loadCountries().then((data) => {
+      const geoService = new GeoService(data)
+      this.setState({ geoService: geoService })
+    });
+  }
 
+  render() {
+    if (!this.state.geoService) return null
+
+    const center = [this.state.lat, this.state.lng]
     const donations = donationsByCountry();
-    const markersList = new CountryDonationsList(donations);
+    const markersList = new CountryDonationsList(donations, this.state.geoService);
 
     return (
       <Map className="App-map" center={center} zoom={this.state.zoom}>

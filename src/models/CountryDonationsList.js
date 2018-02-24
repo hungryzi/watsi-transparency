@@ -1,11 +1,9 @@
 import CountryDonation from './CountryDonation';
-import { getCenter } from '../services/GeoService';
-
 const MAX_COLOR = '#ff0000';
 const MAX_SIZE = 100;
 
 export default class CountryDonationList {
-  constructor(countryDonations) {
+  constructor(countryDonations, geoService) {
     let maxDonationCounts = 0;
     let maxTotalAmount = 0
 
@@ -18,7 +16,7 @@ export default class CountryDonationList {
         maxDonationCounts = c.donationsCount;
       }
 
-      const center = getCenter(c.name);
+      const center = geoService.getCenter(c.name);
       return new CountryDonation(this, c.name, c.donationsCount, c.totalAmount, center);
     });
 
