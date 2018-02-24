@@ -5,7 +5,7 @@ import {
 } from 'react-leaflet';
 
 import { MarkersList } from '../components';
-import { donationsByCountry } from '../services/DonationsService';
+import DonationsService, { loadDonations } from '../services/DonationsService';
 import GeoService, { loadCountries } from '../services/GeoService';
 import CountryDonationsList from '../models/CountryDonationsList';
 
@@ -13,23 +13,30 @@ import 'leaflet/dist/leaflet.css';
 
 export default class CustomComponent extends Component {
   state = {
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13,
+    lat: -0.024,
+    lng: 37.9,
+    zoom: 3,
   }
+
+  month = '2017-08';
 
   componentDidMount() {
     loadCountries().then((data) => {
       const geoService = new GeoService(data)
       this.setState({ geoService: geoService })
     });
+    loadDonations().then((data) => {
+      const donationsService = new DonationsService(data)
+      this.setState({ donationsService: donationsService })
+    });
   }
 
   render() {
     if (!this.state.geoService) return null
+    if (!this.state.donationsService) return null
 
     const center = [this.state.lat, this.state.lng]
-    const donations = donationsByCountry();
+    const donations = this.state.donationsService.donationsByCountry(this.month);
     const markersList = new CountryDonationsList(donations, this.state.geoService);
 
     return (

@@ -1,11 +1,56 @@
-export function donationsByCountry() {
-  return [
-    { name: 'kenya', totalAmount: 1200, donationsCount: 10 },
-    { name: 'tanzania', totalAmount: 2012, donationsCount: 3 },
-    { name: 'ghana', totalAmount: 1120, donationsCount: 10 },
-    { name: 'uganda', totalAmount: 830, donationsCount: 2 },
-    { name: 'nigeria', totalAmount: 304, donationsCount: 4 },
-    { name: 'ethiopia', totalAmount: 183, donationsCount: 8 },
-    { name: 'algeria', totalAmount: 104, donationsCount: 2 },
-  ]
+import { json } from 'd3-fetch';
+
+const DONATIONS_URL = 'https://dataclips.heroku.com/xgxgumjxzkzcagmgzegejyrebswx.json'
+
+function groupBy(list, keyGetter) {
+  const map = new Map();
+  list.forEach((item) => {
+    const key = keyGetter(item);
+    const collection = map.get(key);
+    if (!collection) {
+      map.set(key, [item]);
+    } else {
+      collection.push(item);
+    }
+  });
+  return map;
+}
+
+export function loadDonations() {
+  return json(DONATIONS_URL).then((data) => {
+    const fields = data.fields.map((field) => field.toLowerCase().replace(' ', '_'));
+    return data.values.map((row) => {
+      return fields.reduce((record, field, index) => {
+        switch (field) {
+          case 'cost':
+            record[field] = parseFloat(row[index].replace('$', ''));
+            break;
+          default:
+            record[field] = row[index];
+        }
+        return record;
+      }, {});
+    });
+  });
+}
+
+export default class DonationsService {
+  constructor(donations) {
+    this.donations = donations;
+  }
+
+  donationsByCountry(month) {
+    const groupedByCountry = groupBy(this.donations.filter((d) => {
+      return d.date_funded && d.date_funded.startsWith(month);
+    }), (donation) => donation.country);
+
+    return [...groupedByCountry.keys()].map((key) => {
+      const donations = [...groupedByCountry.get(key)];
+      return {
+        name: key,
+        donationsCount: donations.length,
+        totalAmount: donations.reduce((sum, d) => sum + d.cost, 0)
+      }
+    });
+  }
 }

@@ -1,6 +1,6 @@
 import CountryDonation from './CountryDonation';
 const MAX_COLOR = '#ff0000';
-const MAX_SIZE = 100;
+const MAX_SIZE = 400;
 
 export default class CountryDonationList {
   constructor(countryDonations, geoService) {
@@ -34,7 +34,7 @@ export default class CountryDonationList {
 
   normalizeSize(count) {
     const ratio = count / this.maxDonationCounts;
-    return MAX_SIZE * ratio;
+    return Math.sqrt(MAX_SIZE * ratio);
   }
 }
 

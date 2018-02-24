@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default class CountryDonation {
   constructor(list, name, donationsCount, totalAmount, center) {
     this.name = name;
@@ -28,7 +30,11 @@ export default class CountryDonation {
   }
 
   children() {
-    return `hello ${this.name}`;
+    return <div>
+      <p><strong>{this.name}</strong></p>
+      <p>{this.donationsCount} cases</p>
+      <p>${this.totalAmount} funded</p>
+    </div>;
   }
 
   toProps() {
