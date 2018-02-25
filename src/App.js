@@ -7,7 +7,6 @@ import { Header, Map, Nav } from './components';
 import './App.css';
 
 const typography = new Typography(theme);
-const WATSI_COLOR = '#5bb8ff';
 
 function toFilterString(year, month) {
   return month > 9 ? `${year}-${month}` : `${year}-0${month}`;
