@@ -23,7 +23,7 @@ export function loadDonations() {
       return fields.reduce((record, field, index) => {
         switch (field) {
           case 'cost':
-            record[field] = parseFloat(row[index].replace('$', ''));
+            record[field] = parseFloat(row[index].replace('$', '').replace(',', ''));
             break;
           default:
             record[field] = row[index];
