@@ -8,7 +8,38 @@
 
 .App-nav {
   background: #ddd;
-  padding: 0 1em;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+ul.nav-years {
+  width: auto;
+  white-space:nowrap;
+}
+
+ul.nav-years,
+ul.nav-months {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+
+.nav-year {
+  background-color: blue;
+  display: inline-block;
+  margin: 0;
+}
+
+.nav-year span {
+  padding: 0 0.5em;
+}
+
+.nav-month {
+  background-color: yellow;
+  width: 2em;
+  text-align: center;
+  margin: 0;
+  display: inline-block;
 }
 
 .App-map {
