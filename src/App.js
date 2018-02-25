@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Typography from 'typography';
-import theme from 'typography-theme-parnassus';
+import theme from 'typography-theme-st-annes';
 import {Helmet} from "react-helmet";
 
 import { Header, Map, Nav } from './components';
 import './App.css';
 
 const typography = new Typography(theme);
+const WATSI_COLOR = '#5bb8ff';
 
 function toFilterString(year, month) {
   return month > 9 ? `${year}-${month}` : `${year}-0${month}`;

@@ -5,10 +5,14 @@ import {
   PropTypes as MapPropTypes,
 } from 'react-leaflet';
 
+const WATSI_COLOR = '#5bb8ff';
+
 const CountryCircle = ({children, position, radius, opacity, name, color}) => {
   return <CircleMarker
     center={position}
-    color='red'
+    color={WATSI_COLOR}
+    weight={2}
+    opacity={1}
     fillColor={color}
     fillOpacity={opacity}
     radius={radius}

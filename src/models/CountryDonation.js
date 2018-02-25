@@ -33,7 +33,7 @@ export default class CountryDonation {
     return <div>
       <p><strong>{this.name}</strong></p>
       <p>{this.donationsCount} cases</p>
-      <p>${this.totalAmount} funded</p>
+      <p>{this.totalAmount.toLocaleString(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 })} funded</p>
     </div>;
   }
 

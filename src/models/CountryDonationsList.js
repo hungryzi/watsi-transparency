@@ -29,7 +29,7 @@ export default class CountryDonationList {
   }
 
   normalizeOpacity(amount) {
-    return amount / this.maxTotalAmount;
+    return (amount / this.maxTotalAmount) * 0.8 + 0.2;
   }
 
   normalizeSize(count) {

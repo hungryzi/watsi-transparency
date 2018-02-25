@@ -13,9 +13,9 @@ import 'leaflet/dist/leaflet.css';
 
 export default class CustomComponent extends Component {
   state = {
-    lat: -0.024,
-    lng: 37.9,
-    zoom: 2,
+    lat: 7.94,
+    lng: -1.02,
+    zoom: 3,
   }
 
   componentDidMount() {
@@ -43,7 +43,7 @@ export default class CustomComponent extends Component {
         <TileLayer
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
-          id='mapbox.satellite'
+          id='mapbox.light'
           accessToken='pk.eyJ1IjoiaHVuZ3J5emkiLCJhIjoiY2pkeHpsdHp4MHJlOTJ4cWk2YTNhYXFwbiJ9.48mv64wKc__CuU8sjBHQfA'
         />
         <MarkersList markers={markersList.markers.map((m) => m.toProps())} />

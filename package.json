@@ -12,7 +12,7 @@
     "react-leaflet": "^1.8.1",
     "react-scripts": "1.1.1",
     "typography": "^0.16.6",
-    "typography-theme-parnassus": "^0.15.10"
+    "typography-theme-st-annes": "^0.15.10"
   },
   "scripts": {
     "start": "react-scripts start",

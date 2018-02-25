@@ -1,13 +1,29 @@
 .App {
 }
 
+body {
+  color: #333;
+}
+
+a {
+  color: #333;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
 .App-header {
-  background: #eee;
   padding: 0 1em;
+  font-size: 1.5em;
+}
+
+.App-header brand {
+  color: #5bb8ff;
 }
 
 .App-nav {
-  background: #ddd;
+  background: #eee;
   overflow-x: scroll;
   overflow-y: hidden;
 }
@@ -25,21 +41,29 @@ ul.nav-months {
 }
 
 .nav-year {
-  background-color: blue;
   display: inline-block;
   margin: 0;
 }
 
 .nav-year span {
   padding: 0 0.5em;
+  font-weight: 700;
 }
 
 .nav-month {
-  background-color: yellow;
   width: 2em;
   text-align: center;
   margin: 0;
   display: inline-block;
+}
+
+.nav-month span {
+  color: #5bb8ff;
+  font-weight: normal;
+}
+
+.nav-month a {
+  color: #333;
 }
 
 .App-map {
