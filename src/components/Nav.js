@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 const FOUNDING_YEAR = 2013;
 const FOUNDING_MONTH = 5;
 
+function toFilterString(year, month) {
+  return month > 9 ? `${year}-${month}` : `${year}-0${month}`;
+}
+
 function filterOptions() {
   const now = new Date();
   let year = now.getFullYear();
@@ -11,7 +15,7 @@ function filterOptions() {
   const options = [];
   while (year >= FOUNDING_YEAR) {
     const yearOptions = { year: year, months: [] }
-    while(month >= (year == FOUNDING_YEAR ? FOUNDING_MONTH : 1)) {
+    while(month >= (year === FOUNDING_YEAR ? FOUNDING_MONTH : 1)) {
       yearOptions.months.push(month)
 
       month--;
@@ -23,15 +27,10 @@ function filterOptions() {
 
   }
 
-  console.log('options', options, year);
   return options;
 }
 
 class Nav extends Component {
-  filterBy(filterMonth) {
-    console.log(`filtering by ${filterMonth}`);
-  }
-
   render() {
     return <div className="App-nav">
       <ul className="nav-years">
@@ -40,9 +39,13 @@ class Nav extends Component {
                 <span>{year}</span>
                 <ul className='nav-months'>
                   {months.map((month, index) => {
-                    const filterMonth = month > 9 ? `${year}-${month}` : `${year}-0${month}`;
+                    const filterMonth = toFilterString(year, month);
                     return <li className='nav-month' key={index}>
-                      <a href='#' onClick={() => this.filterBy(filterMonth)}>{month}</a>
+                      {filterMonth === this.props.selectedMonth ?
+                        <span>{month}</span>
+                      :
+                      <a href='#' onClick={() => this.props.filterByMonth(filterMonth)}>{month}</a>
+                      }
                       </li>;
                   })}
                 </ul>
