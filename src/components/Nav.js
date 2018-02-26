@@ -12,9 +12,9 @@ function filterOptions() {
 
   const options = [];
   while (year >= FOUNDING_YEAR) {
-    const yearOptions = { year: year, months: [] }
-    while(month >= (year === FOUNDING_YEAR ? FOUNDING_MONTH : 1)) {
-      yearOptions.months.push(month)
+    const yearOptions = { year: year, months: [] };
+    while (month >= (year === FOUNDING_YEAR ? FOUNDING_MONTH : 1)) {
+      yearOptions.months.push(month);
 
       month--;
     }
@@ -22,7 +22,6 @@ function filterOptions() {
 
     month = 12;
     year--;
-
   }
 
   return options;
@@ -31,38 +30,47 @@ function filterOptions() {
 class Nav extends Component {
   render() {
     const { selectedMonth, totalAmount, countriesCount } = this.props;
-    return <div className="app__nav">
-      <div className="nav__container">
-        <ul className="nav__years">
-        {filterOptions().map(({ year, months }, yearIndex) => {
-          return <li key={yearIndex} className='nav__year'>
+    return (
+      <div className="app__nav">
+        <div className="nav__container">
+          <ul className="nav__years">
+            {filterOptions().map(({ year, months }, yearIndex) => {
+              return (
+                <li key={yearIndex} className="nav__year">
                   <span>{year}</span>
-                  <ul className='nav__months'>
+                  <ul className="nav__months">
                     {months.map((month, index) => {
                       const filterMonth = toFilterString(year, month);
-                      return <li className='nav__month' key={index}>
-                        {filterMonth === this.props.selectedMonth ?
-                          <span className="app__watsi">{month}</span>
-                        :
-                        <span className="app__action" onClick={() => this.props.filterByMonth(filterMonth)}>{month}</span>
-                        }
-                        </li>;
+                      return (
+                        <li className="nav__month" key={index}>
+                          {filterMonth === this.props.selectedMonth ? (
+                            <span className="app__watsi">{month}</span>
+                          ) : (
+                            <span
+                              className="app__action"
+                              onClick={() =>
+                                this.props.filterByMonth(filterMonth)
+                              }
+                            >
+                              {month}
+                            </span>
+                          )}
+                        </li>
+                      );
                     })}
                   </ul>
-                </li>;
-        })}
-        </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="nav__intro">
+          In <span className="app__watsi">{selectedMonth}</span>
+          , Watsi's users funded {formatCurrency(totalAmount)} to patients in{' '}
+          {countriesCount} countries.
+        </div>
       </div>
-      <div className="nav__intro">
-        In{' '}
-        <span className="app__watsi">{selectedMonth}</span>
-        , Watsi's users funded{' '}
-        {formatCurrency(totalAmount)}
-        {' '}to patients in{' '}
-        {countriesCount}
-        {' '}countries.
-      </div>
-      </div>;
+    );
   }
 }
 

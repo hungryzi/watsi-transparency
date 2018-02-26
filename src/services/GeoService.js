@@ -1,12 +1,12 @@
 import { csv } from 'd3-fetch';
 
 export function loadCountries() {
-  return csv(process.env.PUBLIC_URL + '/countries.csv').then((data) => {
-    return data.map((country) => ({
+  return csv(process.env.PUBLIC_URL + '/countries.csv').then(data => {
+    return data.map(country => ({
       name: country.name.toLowerCase(),
       longitude: parseFloat(country.longitude),
       latitude: parseFloat(country.latitude),
-      code: country.country
+      code: country.country,
     }));
   });
 }
@@ -17,7 +17,7 @@ export default class GeoService {
   }
 
   getCenter(countryName) {
-    const country = this.countries.find((country) => {
+    const country = this.countries.find(country => {
       return country.name === countryName.toLowerCase();
     });
 

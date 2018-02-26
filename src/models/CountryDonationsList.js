@@ -5,9 +5,9 @@ const MAX_SIZE = 400;
 export default class CountryDonationList {
   constructor(countryDonations, geoService) {
     let maxDonationCounts = 0;
-    let maxTotalAmount = 0
+    let maxTotalAmount = 0;
 
-    this.markers = countryDonations.map((c) => {
+    this.markers = countryDonations.map(c => {
       if (maxTotalAmount < c.totalAmount) {
         maxTotalAmount = c.totalAmount;
       }
@@ -17,7 +17,13 @@ export default class CountryDonationList {
       }
 
       const center = geoService.getCenter(c.name);
-      return new CountryDonation(this, c.name, c.donationsCount, c.totalAmount, center);
+      return new CountryDonation(
+        this,
+        c.name,
+        c.donationsCount,
+        c.totalAmount,
+        center
+      );
     });
 
     this.maxTotalAmount = maxTotalAmount;
@@ -29,7 +35,7 @@ export default class CountryDonationList {
   }
 
   normalizeOpacity(amount) {
-    return (amount / this.maxTotalAmount) * 0.8 + 0.2;
+    return amount / this.maxTotalAmount * 0.8 + 0.2;
   }
 
   normalizeSize(count) {
@@ -37,4 +43,3 @@ export default class CountryDonationList {
     return Math.sqrt(MAX_SIZE * ratio);
   }
 }
-

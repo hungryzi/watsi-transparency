@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Typography from 'typography';
 import theme from 'typography-theme-st-annes';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 
 import { FAQ, Header, Map, Nav } from './components';
 import DonationsService, { loadDonations } from './services/DonationsService';
@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       selectedMonth: toFilterString(year, month),
       isFAQopen: false,
-    }
+    };
   }
 
   filterByMonth(month) {
@@ -36,15 +36,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    loadDonations().then((data) => {
-      const donationsService = new DonationsService(data)
-      this.setState({ donationsService: donationsService })
+    loadDonations().then(data => {
+      const donationsService = new DonationsService(data);
+      this.setState({ donationsService: donationsService });
     });
   }
 
   getDonations() {
-    return this.state.donationsService ?
-      this.state.donationsService.donationsByCountry(this.state.selectedMonth) : [];
+    return this.state.donationsService
+      ? this.state.donationsService.donationsByCountry(this.state.selectedMonth)
+      : [];
   }
 
   render() {
@@ -58,9 +59,7 @@ class App extends Component {
           <title>Watsi's Transparency</title>
           <style>{typography.toString()}</style>
         </Helmet>
-        <Header
-          openFAQ={this.openFAQ.bind(this)}
-        >
+        <Header openFAQ={this.openFAQ.bind(this)}>
           <Nav
             selectedMonth={this.state.selectedMonth}
             filterByMonth={this.filterByMonth.bind(this)}
@@ -68,13 +67,8 @@ class App extends Component {
             countriesCount={countriesCount}
           />
         </Header>
-        <FAQ
-          isOpen={this.state.isFAQopen}
-          onClose={this.closeFAQ.bind(this)}
-        />
-        <Map
-          donations={donations}
-        ></Map>
+        <FAQ isOpen={this.state.isFAQopen} onClose={this.closeFAQ.bind(this)} />
+        <Map donations={donations} />
       </div>
     );
   }
