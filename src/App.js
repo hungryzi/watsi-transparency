@@ -56,7 +56,6 @@ class App extends Component {
     return (
       <div className="App">
         <Helmet>
-          <title>Watsi's Transparency</title>
           <style>{typography.toString()}</style>
         </Helmet>
         <Header openFAQ={this.openFAQ.bind(this)}>
