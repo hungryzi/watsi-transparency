@@ -1,7 +1,7 @@
 import { csv } from 'd3-fetch';
 
 export function loadCountries() {
-  return csv('/countries.csv').then((data) => {
+  return csv(process.env.PUBLIC_URL + '/countries.csv').then((data) => {
     return data.map((country) => ({
       name: country.name.toLowerCase(),
       longitude: parseFloat(country.longitude),
