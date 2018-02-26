@@ -14,11 +14,17 @@ a:hover {
 }
 
 .App-header {
-  padding: 0 1em;
+  background: #fff;
   font-size: 1.5em;
+  position: absolute;
+  z-index: 99999;
 }
 
-.App-header brand {
+.App-header .header__title {
+  padding: 0 1em;
+}
+
+.App-header .header__brand {
   color: #5bb8ff;
 }
 
@@ -67,5 +73,5 @@ ul.nav-months {
 }
 
 .App-map {
-  height: 600px;
+  height: 100vh;
 }

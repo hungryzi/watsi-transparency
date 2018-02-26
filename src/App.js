@@ -33,11 +33,12 @@ class App extends Component {
           <title>Watsi's Transparency</title>
           <style>{typography.toString()}</style>
         </Helmet>
-        <Header></Header>
-        <Nav
-          selectedMonth={this.state.selectedMonth}
-          filterByMonth={this.filterByMonth.bind(this)}
-        ></Nav>
+        <Header>
+          <Nav
+            selectedMonth={this.state.selectedMonth}
+            filterByMonth={this.filterByMonth.bind(this)}
+          />
+        </Header>
         <Map
           month={this.state.selectedMonth}
         ></Map>

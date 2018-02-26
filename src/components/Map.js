@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   Map,
   TileLayer,
+  ZoomControl,
 } from 'react-leaflet';
 
 import { MarkersList } from '../components';
@@ -39,9 +40,17 @@ export default class CustomComponent extends Component {
     const markersList = new CountryDonationsList(donations, this.state.geoService);
 
     return (
-      <Map className="App-map" center={center} zoom={this.state.zoom} minZoom={2} maxZoom={5}>
+      <Map
+        className="App-map"
+        center={center}
+        zoom={this.state.zoom}
+        minZoom={2}
+        maxZoom={5}
+        zoomControl={false}
+      >
+        <ZoomControl position="bottomright" />
         <TileLayer
-          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+          attribution="Map data &amp;copy; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors, &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot;&gt;CC-BY-SA&lt;/a&gt;, Imagery &copy; &lt;a href=&quot;http://mapbox.com&quot;&gt;Mapbox&lt;/a&gt;"
           url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
           id='mapbox.light'
           accessToken='pk.eyJ1IjoiaHVuZ3J5emkiLCJhIjoiY2pkeHpsdHp4MHJlOTJ4cWk2YTNhYXFwbiJ9.48mv64wKc__CuU8sjBHQfA'
