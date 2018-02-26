@@ -14,8 +14,8 @@ import 'leaflet/dist/leaflet.css';
 
 export default class CustomComponent extends Component {
   state = {
-    lat: 7.94,
-    lng: -1.02,
+    lat: 12.56,
+    lng: 104.99,
     zoom: 3,
   }
 
@@ -44,7 +44,7 @@ export default class CustomComponent extends Component {
         className="App-map"
         center={center}
         zoom={this.state.zoom}
-        minZoom={2}
+        minZoom={1}
         maxZoom={5}
         zoomControl={false}
       >
