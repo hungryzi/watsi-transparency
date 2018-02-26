@@ -34,7 +34,7 @@ const FAQ = ({ isOpen, onClose }) => {
         of its blue circle is correlated to the number of patients and the
         opacity to the amount of donation.
         <br />
-        <img src={markerExample} />
+        <img alt="Example of a marker" src={markerExample} />
       </p>
 
       <h4>Where can I find the code?</h4>
