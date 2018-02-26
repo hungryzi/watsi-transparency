@@ -4,13 +4,11 @@ import theme from 'typography-theme-st-annes';
 import {Helmet} from "react-helmet";
 
 import { FAQ, Header, Map, Nav } from './components';
+import DonationsService, { loadDonations } from './services/DonationsService';
+import { toFilterString } from './utils';
 import './App.css';
 
 const typography = new Typography(theme);
-
-function toFilterString(year, month) {
-  return month > 9 ? `${year}-${month}` : `${year}-0${month}`;
-}
 
 class App extends Component {
   constructor(props) {
@@ -30,16 +28,30 @@ class App extends Component {
   }
 
   openFAQ() {
-    console.log('open')
     this.setState({ isFAQopen: true });
   }
 
   closeFAQ() {
-    console.log('close')
     this.setState({ isFAQopen: false });
   }
 
+  componentDidMount() {
+    loadDonations().then((data) => {
+      const donationsService = new DonationsService(data)
+      this.setState({ donationsService: donationsService })
+    });
+  }
+
+  getDonations() {
+    return this.state.donationsService ?
+      this.state.donationsService.donationsByCountry(this.state.selectedMonth) : [];
+  }
+
   render() {
+    const donations = this.getDonations();
+    const totalAmount = donations.reduce((sum, d) => sum + d.totalAmount, 0);
+    const countriesCount = donations.length;
+
     return (
       <div className="App">
         <Helmet>
@@ -52,6 +64,8 @@ class App extends Component {
           <Nav
             selectedMonth={this.state.selectedMonth}
             filterByMonth={this.filterByMonth.bind(this)}
+            totalAmount={totalAmount}
+            countriesCount={countriesCount}
           />
         </Header>
         <FAQ
@@ -59,7 +73,7 @@ class App extends Component {
           onClose={this.closeFAQ.bind(this)}
         />
         <Map
-          month={this.state.selectedMonth}
+          donations={donations}
         ></Map>
       </div>
     );

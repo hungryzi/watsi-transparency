@@ -6,7 +6,6 @@ import {
 } from 'react-leaflet';
 
 import { MarkersList } from '../components';
-import DonationsService, { loadDonations } from '../services/DonationsService';
 import GeoService, { loadCountries } from '../services/GeoService';
 import CountryDonationsList from '../models/CountryDonationsList';
 
@@ -24,24 +23,21 @@ export default class CustomComponent extends Component {
       const geoService = new GeoService(data)
       this.setState({ geoService: geoService })
     });
-    loadDonations().then((data) => {
-      const donationsService = new DonationsService(data)
-      this.setState({ donationsService: donationsService })
-    });
+  }
+
+  getMarkers() {
+    if (!this.state.geoService) return [];
+
+    const markersList = new CountryDonationsList(this.props.donations, this.state.geoService);
+    return markersList.markers.map((m) => m.toProps())
   }
 
   render() {
-    if (!this.state.geoService) return null
-    if (!this.state.donationsService) return null
-
-    const month = this.props.month;
     const center = [this.state.lat, this.state.lng]
-    const donations = this.state.donationsService.donationsByCountry(month);
-    const markersList = new CountryDonationsList(donations, this.state.geoService);
 
     return (
       <Map
-        className="App-map"
+        className="app__map"
         center={center}
         zoom={this.state.zoom}
         minZoom={1}
@@ -55,7 +51,7 @@ export default class CustomComponent extends Component {
           id='mapbox.light'
           accessToken='pk.eyJ1IjoiaHVuZ3J5emkiLCJhIjoiY2pkeHpsdHp4MHJlOTJ4cWk2YTNhYXFwbiJ9.48mv64wKc__CuU8sjBHQfA'
         />
-        <MarkersList markers={markersList.markers.map((m) => m.toProps())} />
+        <MarkersList markers={this.getMarkers()} />
       </Map>
     )
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import './Header.css';
 
 class Header extends Component {
   render() {
-    return <header className="App-header">
+    return <header className="app__header">
             <div className="header__title">
-              <span className="header__brand">Watsi</span>'s Transparency
+              <span className="app__watsi">Watsi</span>'s Transparency
               <span className="header__faq-link app__action" onClick={this.props.openFAQ}>
                 ¿FAQ?
               </span>

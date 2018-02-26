@@ -1,0 +1,11 @@
+.app__header {
+  width: 100vw;
+  background: #fff;
+  font-size: 1.5em;
+  position: absolute;
+  z-index: 99999;
+}
+
+.app__header .header__title {
+  padding: 0 1em;
+}

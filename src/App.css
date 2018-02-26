@@ -1,6 +1,3 @@
-.App {
-}
-
 body {
   color: #333;
 }
@@ -9,47 +6,7 @@ body a {
   color: #5bb8ff;
 }
 
-a:hover {
-  opacity: 0.8;
-}
-
 .header__faq-link {
-  float: right;
-}
-
-.faq {
-  position: absolute;
-  z-index: 999999;
-  top: 0;
-  left: 0;
-  right: 0;
-  border: 1px solid #5bb8ff;
-  border-radius: 1em;
-  margin: 1em;
-  background: #fff;
-  visibility: hidden;
-  opacity: 0;
-  padding: 1em;
-  font-size: 1em;
-}
-
-.faq h3 {
-  margin-top: 0;
-}
-
-.faq h4 {
-  margin: 0;
-}
-
-.faq.open {
-  visibility: visible;
-  opacity: 1;
-  transition: transform 0.4s, opacity 0.4s;
-}
-
-.faq__close {
-  font-size: 0.8em;
-  font-weight: 400;
   float: right;
 }
 
@@ -57,66 +14,11 @@ a:hover {
   cursor: pointer;
 }
 
-.App-header {
-  width: 100vw;
-  background: #fff;
-  font-size: 1.5em;
-  position: absolute;
-  z-index: 99999;
+.app__watsi {
+  color: #5bb8ff !important;
+  font-weight: 400 !important;
 }
 
-.App-header .header__title {
-  padding: 0 1em;
-}
-
-.App-header .header__brand {
-  color: #5bb8ff;
-}
-
-.App-nav {
-  background: #eee;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-ul.nav-years {
-  width: auto;
-  white-space:nowrap;
-}
-
-ul.nav-years,
-ul.nav-months {
-  display: inline-block;
-  list-style: none;
-  margin: 0;
-}
-
-.nav-year {
-  display: inline-block;
-  margin: 0;
-}
-
-.nav-year span {
-  padding: 0 0.5em;
-  font-weight: 700;
-}
-
-.nav-month {
-  width: 2em;
-  text-align: center;
-  margin: 0;
-  display: inline-block;
-}
-
-.nav-month span {
-  color: #5bb8ff;
-  font-weight: normal;
-}
-
-.nav-month a {
-  color: #333;
-}
-
-.App-map {
+.app__map {
   height: 100vh;
 }

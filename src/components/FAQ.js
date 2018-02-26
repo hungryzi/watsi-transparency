@@ -1,5 +1,5 @@
 import React from 'react'
-const WATSI_COLOR = '#5bb8ff';
+import './FAQ.css';
 
 const FAQ = ({ isOpen, onClose }) => {
   let className = "faq";

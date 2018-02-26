@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatCurrency } from '../utils';
 
 export default class CountryDonation {
   constructor(list, name, donationsCount, totalAmount, center) {
@@ -32,8 +33,8 @@ export default class CountryDonation {
   children() {
     return <div>
       <p><strong>{this.name}</strong></p>
-      <p>{this.donationsCount} cases</p>
-      <p>{this.totalAmount.toLocaleString(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 })} funded</p>
+      <p>{this.donationsCount} patients</p>
+      <p>{formatCurrency(this.totalAmount)} funded</p>
     </div>;
   }
 
@@ -41,4 +42,3 @@ export default class CountryDonation {
     return { key: this.key(), children: this.children(), position: this.position(), opacity: this.opacity(), radius: this.size() };
   }
 }
-
